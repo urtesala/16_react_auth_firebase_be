@@ -1,11 +1,15 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
+import ProtectedRoute from './components/ProtectedRoute';
 import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
+import { useAuthCtx } from './store/AuthContext';
 
 function App() {
+  // App priklausomai nuo isUserLoggedIn generuoti routus
+  const { isUserLoggedIn } = useAuthCtx();
   return (
     <Layout>
       <Switch>
@@ -13,11 +17,11 @@ function App() {
           <HomePage />
         </Route>
         <Route path='/auth'>
-          <AuthPage />
+          {!isUserLoggedIn ? <AuthPage /> : <Redirect to='/' />}
         </Route>
-        <Route path='/profile'>
+        <ProtectedRoute path='/profile'>
           <UserProfile />
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </Layout>
   );
