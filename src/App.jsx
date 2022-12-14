@@ -6,7 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AddPost from './pages/AddPost';
 import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
-import PostPage from './pages/PostPage.jsx';
+import PostPage from './pages/PostPage';
 import { useAuthCtx } from './store/AuthContext';
 
 function App() {
@@ -25,10 +25,10 @@ function App() {
           <UserProfile />
         </ProtectedRoute>
         <ProtectedRoute path='/posts'>
-          <PostPage/>
+          <PostPage />
         </ProtectedRoute>
         <ProtectedRoute path='/add-post'>
-          <AddPost/>
+          <AddPost />
         </ProtectedRoute>
       </Switch>
     </Layout>

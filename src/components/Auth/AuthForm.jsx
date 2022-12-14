@@ -7,6 +7,7 @@ import { useAuthCtx } from '../../store/AuthContext';
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
+  // contexto contextValues gavimas i ctx reiksme
   const ctx = useAuthCtx();
   const history = useHistory();
 
@@ -21,8 +22,8 @@ const AuthForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: 'mike@mike.com',
+      password: '123456',
     },
     onSubmit: async (values) => {
       // register or login
@@ -55,7 +56,7 @@ const AuthForm = () => {
       }
       // nera klaidu gauti duomenys yra sendResult
       console.log('sendResult ===', sendResult);
-      ctx.login({ token: sendResult.idToken, email: sendResult.email });
+      ctx.login(sendResult);
       // jei nera klaidu naviguojam i /profile puslapi
       history.push('/profile');
     },

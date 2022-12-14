@@ -33,7 +33,7 @@ const MainNavigation = () => {
           )}
           {isUserLoggedIn && (
             <li>
-              <Link to='/add-post'>Add Post</Link>
+              <Link to='/add-post'>Create Post</Link>
             </li>
           )}
           {isUserLoggedIn && (

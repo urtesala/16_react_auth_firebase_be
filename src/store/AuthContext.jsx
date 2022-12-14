@@ -1,6 +1,6 @@
 import { createContext, useState, useContext } from 'react';
 
-export const AuthContext = createContext({
+const AuthContext = createContext({
   login({ token, email }) {},
   logout() {},
   isUserLoggedIn: false,
@@ -17,13 +17,20 @@ function AuthContextProvider(props) {
   const emailFromStorage = localStorage.getItem('email');
   const [token, setToken] = useState(tokenFromStorage);
   const [emailValue, setEmailValue] = useState(emailFromStorage);
+  const [uid, setUid] = useState('');
   const isUserLoggedIn = !!token;
 
-  const login = ({ token, email }) => {
-    setToken(token);
-    localStorage.setItem(tokenName, token);
+  // AuthContextProvider
+  // sukurti state userId
+  // issaugoti userId kai prisiloginam
+  // perduoti i contextValue userId
+
+  const login = ({ idToken, email, localId }) => {
+    setToken(idToken);
+    localStorage.setItem(tokenName, idToken);
     setEmailValue(email);
     localStorage.setItem('email', email);
+    setUid(localId);
   };
   const logout = () => {
     setToken('');
@@ -37,6 +44,7 @@ function AuthContextProvider(props) {
     isUserLoggedIn,
     token,
     email: emailValue,
+    uid,
   };
 
   return (
