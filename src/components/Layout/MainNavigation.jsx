@@ -28,6 +28,16 @@ const MainNavigation = () => {
           )}
           {isUserLoggedIn && (
             <li>
+              <Link to='/posts'>Posts</Link>
+            </li>
+          )}
+          {isUserLoggedIn && (
+            <li>
+              <Link to='/add-post'>Add Post</Link>
+            </li>
+          )}
+          {isUserLoggedIn && (
+            <li>
               {/* <button>Logout</button> turi iskviesti contexo logout fn */}
               <button onClick={logout}>Logout</button>
             </li>
